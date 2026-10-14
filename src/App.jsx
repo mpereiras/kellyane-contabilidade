@@ -33,45 +33,60 @@ const services = [
 
 const plans = [
   {
-    name: 'MEI organizado',
-    audience: 'Para quem está começando',
-    price: '250',
-    featured: false,
-    description: 'O essencial para manter seu MEI em dia e cuidar bem dos números.',
+    tier: 'Plano Essencial',
+    name: 'MEI',
+    audience: 'MEI',
+    price: '150',
+    description: 'Ideal para quem está começando e quer manter o negócio em dia, com o suporte certo.',
     features: [
-      'Abertura do primeiro CNPJ',
-      'Escrituração e obrigações fiscais',
+      'Emissão de notas fiscais',
+      'Orientação e controle mensal do DAS-MEI',
       'Declaração anual (DASN-SIMEI)',
-      'Orientação financeira básica',
       'Suporte consultivo',
     ],
   },
   {
-    name: 'Gestão financeira',
-    audience: 'MEI e pequenas empresas',
-    price: '400',
-    featured: true,
-    description: 'Mais clareza sobre as finanças para você decidir os próximos passos.',
+    tier: 'Plano Contábil',
+    name: 'Contábil',
+    audience: 'Pequenas empresas',
+    price: '300',
+    description: 'Para empresas que buscam organização contábil e segurança fiscal.',
     features: [
-      'Escrituração contábil e fiscal',
+      'Contabilidade completa para sua empresa',
+      'Escrituração contábil e obrigações fiscais',
       'Apuração de impostos',
-      'Declarações obrigatórias',
-      'Acompanhamento financeiro',
-      'Suporte próximo e consultivo',
+      'Declarações obrigatórias (mensais)',
+      'Suporte consultivo',
     ],
   },
   {
-    name: 'Gestão completa',
+    tier: 'Plano Gestão',
+    name: 'Contábil + Gestão Financeira',
     audience: 'Pequenas empresas',
-    price: '700',
-    featured: false,
-    description: 'Contabilidade, gestão e time de pessoal trabalhando em sintonia.',
+    price: '500',
+    description: 'Mais controle financeiro e melhores decisões para o seu negócio.',
     features: [
       'Contabilidade completa',
-      'Gestão financeira',
+      'Gestão financeira (controle de caixa e contas)',
       'Relatórios gerenciais',
-      'Departamento pessoal',
+      'Planejamento financeiro',
+      'Suporte consultivo',
+    ],
+  },
+  {
+    tier: 'Plano Completo',
+    name: 'Contábil + Financeiro + Departamento Pessoal',
+    audience: 'Pequenas empresas (ME e EPP)',
+    price: '700',
+    priceNote: 'a partir de',
+    description: 'Mais praticidade e segurança para você focar no crescimento da sua empresa.',
+    features: [
+      'Contabilidade completa',
+      'Gestão financeira (controle de caixa e contas)',
+      'Departamento pessoal (folha, admissão e rescisão)',
+      'Relatórios gerenciais',
       'Férias e obrigações trabalhistas',
+      'Suporte consultivo',
     ],
   },
 ];
@@ -279,19 +294,19 @@ function App() {
             <div className="section-heading plans-heading">
               <p className="eyebrow">NOSSOS PLANOS</p>
               <div className="heading-row">
-                <h2>O plano certo para<br /><em>o momento da sua empresa.</em></h2>
-                <p>Comece com o que você precisa hoje. Quando seu negócio evoluir, a gente cresce junto.</p>
+                <h2>Do início à expansão,<br /><em>o plano ideal para cada fase.</em></h2>
+                <p>Planos contábeis para acompanhar cada etapa do crescimento do seu negócio.</p>
               </div>
             </div>
             <div className="plans-grid">
               {plans.map((plan) => (
-                <article className={`plan-card${plan.featured ? ' plan-featured' : ''}`} key={plan.name}>
-                  {plan.featured && <span className="popular-label">MAIS ESCOLHIDO</span>}
+                <article className="plan-card" key={plan.name}>
+                  <span className="plan-tier">{plan.tier}</span>
                   <p className="plan-audience">{plan.audience}</p>
                   <h3>{plan.name}</h3>
                   <p className="plan-description">{plan.description}</p>
                   <div className="plan-price">
-                    <span>R$</span><strong>{plan.price}</strong>                    <small>{plan.price === '700' ? '/mês · a partir' : '/mês'}</small>
+                    <span>R$</span><strong>{plan.price}</strong><small>/mês{plan.priceNote ? ` · ${plan.priceNote}` : ''}</small>
                   </div>
                   <ul>
                     {plan.features.map((feature) => (
@@ -299,7 +314,7 @@ function App() {
                     ))}
                   </ul>
                   <a
-                    className={`button ${plan.featured ? 'button-gold' : 'button-outline'}`}
+                    className="button button-outline"
                     href={whatsappLink(`Olá, Kellyane! Tenho interesse no plano ${plan.name}. Pode me passar mais informações?`)}
                     target="_blank"
                     rel="noreferrer"

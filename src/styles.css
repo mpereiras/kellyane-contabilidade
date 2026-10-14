@@ -572,7 +572,7 @@ h2 {
 
 .plans-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: stretch;
   gap: 15px;
 }
@@ -581,45 +581,42 @@ h2 {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 457px;
-  padding: 28px 26px 24px;
+  min-height: 520px;
+  padding: 24px 18px 22px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.045);
 }
 
-.plan-featured {
-  border-color: var(--gold);
-  background: rgba(255, 255, 255, 0.085);
-}
-
-.popular-label {
-  position: absolute;
-  top: -12px;
-  right: 20px;
-  padding: 6px 10px;
-  background: var(--gold);
-  color: var(--green);
-  font-size: 8px;
+.plan-tier {
+  align-self: flex-start;
+  margin-bottom: 17px;
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  color: var(--gold);
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
 }
 
 .plan-audience {
+  min-height: 30px;
   margin-bottom: 7px;
   color: #c5d1cb;
-  font-size: 10px;
+  font-size: 9px;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .plan-card h3 {
+  min-height: 68px;
   margin-bottom: 8px;
-  font: 700 21px 'Manrope', sans-serif;
+  font: 700 19px 'Manrope', sans-serif;
   letter-spacing: -0.5px;
 }
 
 .plan-description {
-  min-height: 41px;
+  min-height: 76px;
   margin-bottom: 18px;
   color: #c5d1cb;
   font-size: 12px;
@@ -629,6 +626,7 @@ h2 {
 .plan-price {
   display: flex;
   align-items: baseline;
+  flex-wrap: wrap;
   gap: 4px;
   margin-bottom: 19px;
   color: var(--gold);
@@ -1060,6 +1058,10 @@ h2 {
 
   .service-card:nth-child(n + 3) {
     border-top: 1px solid var(--line);
+  }
+
+  .plans-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .about-grid {
